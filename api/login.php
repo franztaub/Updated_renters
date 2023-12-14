@@ -40,7 +40,7 @@ if ($user) {
           font-family: "Times New Roman", Times, serif; /* Times New Roman font */
           margin: 0;
           font-size:30px;
-          padding: 20px 30px 1850px;
+          padding: 20px;
           text-align: center; /* Center align the content */
         }
         /* Style the button separately */
