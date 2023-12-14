@@ -319,7 +319,6 @@ https://www.tooplate.com/view/2123-simply-amazed
 						document.getElementById("username").value = name;
 					}
 		    </script>
-          <br>
           <label style="color:white;">Name:</label>&nbsp;&nbsp;
           <br>
           <input type="text" id="name" name="name" placeholder="Name" value="<?= $name ?>"  readonly class="readonly-text" />
