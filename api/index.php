@@ -362,12 +362,16 @@ https://www.tooplate.com/view/2123-simply-amazed
                         <h1 style="font-weight: bold; color:black;">Transaction History</h1>
                     </div>
    <form action="index.php" method="POST">
-                <div class="form-group">
-                    <label style="color:white;">Username:</label>&nbsp;&nbsp;
-                </div>
-                <div class="form-group">
-                    <input type="text" id="names" name="names" placeholder="name"  readonly class="readonly-text"/>
-                </div>
+   <div class="form-group">
+                <label style="color:white;"readonly class="readonly-text">Username:</label>&nbsp;&nbsp;
+                <br>
+                <label style="color:white;"readonly class="readonly-text">Room Id:</label>
+            </div>
+            <div class="form-group">
+                <input type="text" id="names" name="names" placeholder="name"  readonly class="readonly-text"/>
+                <br>
+                <input type="text" id="roomid" name="roomid" placeholder="Room Id" value="<?= $room ?>"  readonly class="readonly-text" />
+            </div>
           <script>
 					// Retrieve the name from localStorage
 					var name = localStorage.getItem("user");
@@ -379,56 +383,51 @@ https://www.tooplate.com/view/2123-simply-amazed
 		    </script>
           <br>
           <div class="form-group">
-                <label style="color:white;">Name:</label>
+                <label style="color:white;" readonly class="readonly-text">Name:</label>
                 <br>
-                <label style="color:white;">Room Id:</label>
+                <label style="color:white;" readonly class="readonly-text">Water Bill:</label>&nbsp;&nbsp;
           </div>
           <div class="form-group">
                 <br>
                 <input type="text" id="n" name="n" placeholder="name"  value="<?= $n  ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="roomid" name="roomid" placeholder="Room Id" value="<?= $room ?>"  readonly class="readonly-text" />
+                <input type="text" id="water" name="water" placeholder="Email" value="<?= $water ?>" readonly class="readonly-text" />
           </div>
           <div class="form-group">
-                <label style="color:white;">Contact No.:</label>&nbsp;&nbsp;
+                <label style="color:white;" readonly class="readonly-text">Contact No.:</label>&nbsp;&nbsp;
                 <br>
-                <label style="color:white;">Water Bill:</label>&nbsp;&nbsp;
+                <label style="color:white;" readonly class="readonly-text">Rent:</label>&nbsp;&nbsp;
                 <br>
           </div>
           <div class="form-group">
                 <input type="text" id="num" name="num" placeholder="Contact No." value="<?= $num ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="water" name="water" placeholder="Email" value="<?= $water ?>" readonly class="readonly-text" />
+                <input type="text" id="rent" name="rent" placeholder="Rent"  value="<?= $rent ?>" readonly class="readonly-text"/>
                 </div>
           <div class="form-group">
-                <label style="color:white;">Electric Bill:</label>&nbsp;&nbsp;
+                <label style="color:white;" readonly class="readonly-text">Electric Bill:</label>&nbsp;&nbsp;
                 <br>
-                <label style="color:white;">Rent:</label>&nbsp;&nbsp;
+                <label style="color:white;" readonly class="readonly-text">Status:</label>&nbsp;&nbsp;
                 <br>
           </div>
           <div class="form-group">
                 <input type="text" id="electric" name="electric" placeholder="Electric Bill" value="<?= $electric ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="rent" name="rent" placeholder="Rent"  value="<?= $rent ?>" readonly class="readonly-text"/>
+                <input type="text" id="status" name="status" placeholder="status" value="<?= $status ?>" readonly class="readonly-text"/>
                 <br>
           </div>
           <div class="form-group">
-                <label style="color:white;">Date:</label>&nbsp;&nbsp;
-                <br>
-                <label style="color:white;">Status:</label>&nbsp;&nbsp;
+                <label style="color:white;" readonly class="readonly-text">Date:</label>&nbsp;&nbsp;
                 <br>        
           </div>
           <div class="form-group">
                 <input type="datetime-local" id="date" name="date" placeholder="Date" value="<?= $date ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="status" name="status" placeholder="status" value="<?= $status ?>" readonly class="readonly-text"/>
-                <br>
           </div>
-
-          <br>
+        <br>
           <div class="form-group d-flex align-items-center justify-content-center">
-                <button type="submit" id="display" name="show" class="btn btn-primary">Display</button>         
-          </div>    
+                <button type="submit" id="display" name="show" class="btn btn-primary" style="font-family: 'Poppins'">Display</button>
+          </div>
    
           
         </form>   
