@@ -174,7 +174,7 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
         font-size: 17px;
         color: #000000;
         font-weight:bold;
-        font-family: 'Poppins';
+        font-family: 'Poppins','Poppins';
     }
 
     .form-group {
