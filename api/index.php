@@ -226,7 +226,7 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
     <title>Simply Amazed HTML Template by Tooplate</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../home/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="../home/fontawesome/css/all.min.css" type="text/css" /> 
     <link rel="stylesheet" href="../home/css/slick.css" type="text/css" />   
