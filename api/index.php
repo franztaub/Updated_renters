@@ -358,7 +358,7 @@ https://www.tooplate.com/view/2123-simply-amazed
             <section style="display: none;" class="gallery-section section parallax-window" data-parallax="scroll" data-image-src="../home/img/1.jpg" id="section-3">
                 <div class="container">
                 <div class="title">
-                        <h1 style="font-weight: bold; color:black;">Transaction History</h1>
+                        <h1 style="font-weight: bold; color:black; font-family: 'Poppins', sans-serif;">Transaction History</h1>
                     </div>
    <form action="index.php" method="POST">
    <div class="form-group">
