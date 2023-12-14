@@ -348,8 +348,8 @@ https://www.tooplate.com/view/2123-simply-amazed
           <input type="text" id="room" name="room" placeholder="Room Id"  value="<?= $room_ID ?>" readonly class="readonly-text"/>
           <br>   
 	<br>
-        <button type="submit" id="displayButton" name="display" class="btn btn-primary">Display</button>
-        <button type="submit" id="updateButton" name="update" class="btn btn-primary">Update</button>
+        <button type="submit" id="displayButton" name="display" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Display</button>
+        <button type="submit" id="updateButton" name="update" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Update</button>
           
         </form>   
                 </div>
