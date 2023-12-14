@@ -445,7 +445,6 @@ https://www.tooplate.com/view/2123-simply-amazed
                                 
                             <form id="paymentForm" enctype="multipart/form-data">
                                 <!-- ... other form fields ... -->
-                                <div class="form-group">
                                     <br>
                                     <label style="color:white;">Your Name:</label>&nbsp;&nbsp;
                                     <br>
@@ -454,7 +453,7 @@ https://www.tooplate.com/view/2123-simply-amazed
                                     <br>
                                     <label style="color:white;">Upload your receipt here</label>
                                     <input style="color:white;" id="userImage" name="userImage" type="file" class="form-control">
-                                </div>
+                                    <br>
                                 <button type="button" onclick="uploadPayment()">Upload Now</button>
                             </form> 
                                     
