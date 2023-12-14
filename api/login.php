@@ -33,7 +33,7 @@ if ($user) {
     <title>Blue Background Page</title>
     <style>
       body {
-        background-color: #ADD8E6; /* Light blue background */
+        background-color: linear-gradient(to bottom, #002e84, #5e8bda); /* Light blue background */
         color: white;
         font-family: "Times New Roman", Times, serif; /* Times New Roman font */
         margin: 0;
@@ -79,7 +79,7 @@ if ($user) {
     <title>Blue Background Page</title>
     <style>
       body {
-        background-color: #ADD8E6; /* Light blue background */
+        background-color: linear-gradient(to bottom, #002e84, #5e8bda); /* Light blue background */
         color: white;
         font-family: "Times New Roman", Times, serif; /* Times New Roman font */
         margin: 0;
