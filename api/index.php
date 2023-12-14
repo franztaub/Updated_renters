@@ -174,7 +174,7 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
         font-size: 17px;
         color: #000000;
         font-weight:bold;
-        font-family: 'Poppins','Poppins';
+        font-family: 'Poppins',;
     }
 
     .form-group {
@@ -362,7 +362,7 @@ https://www.tooplate.com/view/2123-simply-amazed
                     </div>
    <form action="index.php" method="POST">
    <div class="form-group">
-                <label style="color:white;"readonly class="readonly-text">Username:</label>&nbsp;&nbsp;
+                <label style="color:white; font-family: Poppins" readonly class="readonly-text">Username:</label>&nbsp;&nbsp;
                 <br>
                 <label style="color:white;"readonly class="readonly-text">Room Id:</label>
             </div>
