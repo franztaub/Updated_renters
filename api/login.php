@@ -34,7 +34,7 @@ if ($user) {
     <style>
       body {
         background-color: linear-gradient(to bottom, #002e84, #5e8bda); /* Light blue background */
-        color: white;
+        color: linear-gradient(to bottom, #002e84, #5e8bda);
         font-family: "Times New Roman", Times, serif; /* Times New Roman font */
         margin: 0;
         padding: 20px;
@@ -80,7 +80,7 @@ if ($user) {
     <style>
       body {
         background-color: linear-gradient(to bottom, #002e84, #5e8bda); /* Light blue background */
-        color: white;
+        color: linear-gradient(to bottom, #002e84, #5e8bda);
         font-family: "Times New Roman", Times, serif; /* Times New Roman font */
         margin: 0;
         padding: 20px;
