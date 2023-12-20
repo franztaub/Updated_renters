@@ -520,10 +520,10 @@ https://www.tooplate.com/view/2123-simply-amazed
                                 <button type="submit" id="new" onclick="uploadPayment()" style="font-family: 'Poppins', sans-serif;">Upload Now</button>
 
                                 <br><br>
-                                            <!-- Display the success or error message -->
-                                        <?php if (!empty($message)): ?>
-                                <p style="color:yellowgreen;"><?php echo $message; ?></p>
-                            <?php endif; ?>
+                                        <!-- Display the success or error message -->
+                                        <?php if (isset($message) && !empty($message)): ?>
+                                            <p style="color:yellowgreen;"><?php echo $message; ?></p>
+                                        <?php endif; ?>
                             </form> 
                                     
                             
