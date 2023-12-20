@@ -41,8 +41,8 @@ try {
         // You can display an error message or take appropriate action.
         $name = "no info";
         $age = "Age";
-        $email = "Email";
-        $contactno = "Contact No.";
+        $email = "";
+        $contactno = "";
         $address = "Address";
         $password = "";
         $room_ID = "Room Id";
@@ -108,18 +108,16 @@ try {
         $date = $formattedDate;
 
         $status = $user['status'];
-
    
     } else {
         // Handle the case where "Username" is not set in the POST request
         // You can display an error message or take appropriate action.
         $n = "no info";
         $room = "Room Id";
-        $num = "Contact No";
-        $contact = "Contact No";
+        $num = "Contact No.";
         $water = "Water Bill";
         $electric = "Electric Bill";
-        $rent = "Rent Bill";
+        $rent = "Rent";
         $date = "";
         $status = "Status";
 
@@ -136,17 +134,26 @@ try {
 }
 
 // Handle file upload
-if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+   // Initialize variables
+$message = "";
     $tmpName = $_FILES['userImage']['tmp_name'];
     $fileName = $_FILES['userImage']['name'];
 
-    // Convert the image file to binary
-    $binaryData = file_get_contents($tmpName);
+    // Check if the file exists before attempting to read its contents
+    if (file_exists($tmpName)) {
+        // Convert the image file to binary
+        $binaryData = file_get_contents($tmpName);
+        // Continue with the rest of your code...
+    } else {
+        // Handle the case where the file does not exist
+        echo "File does not exist.";
+    }
 
     // Extract other form data
     $username = $_POST['pay_names'];
     $name = $_POST['name'];
-    $timestamp = $_POST['timestamp'];
+    $timestamp = $_POST['dateTimeTextbox'];
 
     // Prepare document for MongoDB insertion
     $document = [
@@ -159,11 +166,13 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
     // Insert document into MongoDB collection
     $result = $collectionB->insertOne($document);
 
+    
+
     // Return a response to the frontend
     if ($result->getInsertedCount() > 0) {
-        echo json_encode(['success' => true, 'message' => 'Payment and image uploaded successfully.']);
+        $message = "Registration successful!";
     } else {
-        echo json_encode(['success' => false, 'message' => 'Failed to upload payment and image.']);
+        $message = "Registration failed. Please try again.";
     }
 } else {
     
@@ -171,7 +180,34 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
 
 ?>
 
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Simply Amazed HTML Template by Tooplate</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../home/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="../home/fontawesome/css/all.min.css" type="text/css" /> 
+    <link rel="stylesheet" href="../home/css/slick.css" type="text/css" />   
+    <link rel="stylesheet" href="../home/css/tooplate-simply-amazed.css" type="text/css" />
+<!--
+
+Tooplate 2123 Simply Amazed
+
+https://www.tooplate.com/view/2123-simply-amazed
+
+-->
+
 <style>
+
+.error-label {
+          color: red;
+      }
+      .success-label {
+          color: green;
+      }
 
     .nav-link {
         font-family: 'Poppins', sans-serif;
@@ -185,6 +221,7 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
         width: auto;
         padding: 0;
         font-size: 17px;
+        color: #000000;
         font-weight:bold;
         font-family: 'Poppins', sans-serif;
     }
@@ -229,43 +266,7 @@ if ($_FILES['userImage']['error'] === UPLOAD_ERR_OK) {
             flex-basis: 50%;
         }
     }
-
-    #name::placeholder {
-    color: black !important;
-  }
-
-  /* Add this style to your CSS or within a style tag in your HTML */
-  .button-container {
-    text-align: center; /* Optional: Center the buttons horizontally */
-  }
-
-  .btn {
-    display: inline-block;
-    margin-right:  -10px; /* Optional: Add some space between the buttons */
-  }
 </style>
-
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8" />
-    <title>Simply Amazed HTML Template by Tooplate</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../home/css/bootstrap.min.css" type="text/css" />
-    <link rel="stylesheet" href="../home/fontawesome/css/all.min.css" type="text/css" /> 
-    <link rel="stylesheet" href="../home/css/slick.css" type="text/css" />   
-    <link rel="stylesheet" href="../home/css/tooplate-simply-amazed.css" type="text/css" />
-<!--
-
-Tooplate 2123 Simply Amazed
-
-https://www.tooplate.com/view/2123-simply-amazed
-
--->
-
-
 
 </head>
 
@@ -326,14 +327,14 @@ https://www.tooplate.com/view/2123-simply-amazed
                 </div>
             </div>
         
-            <section style="display: none; background: linear-gradient(to bottom, #002e84, #5e8bda);" class="work-section section" data-parallax="scroll" id="section-2">
+            <section style="display: none; background: linear-gradient(to top, #002e84, #5e8bda);" class="work-section section" data-parallax="scroll" id="section-2">
                 <div class="container">
                 <div class="title">
                         <h1 style="font-weight: bold; color:white; font-family:Poppins;">Personal Info</h1>
                     </div>
                 <form action="index.php" method="POST">
                 <br>
-                <label for="username" style="color:white; font-family:Poppins;" readonly class="readonly-text" >Username:</label>&nbsp;&nbsp;
+                <label for="username" style="color:white; font-family:Poppins;">Username:</label>&nbsp;&nbsp;
                 <br>
           <input type="text" id="username" name="username" placeholder="Username" readonly class="readonly-text" />
           <script>
@@ -346,44 +347,42 @@ https://www.tooplate.com/view/2123-simply-amazed
 					}
 		  </script>
           <br>
-          <label style="color:white; font-family:Poppins;" readonly class="readonly-text">Name:</label>&nbsp;&nbsp;
+          <label style="color:white;" readonly class="readonly-text">Name:</label>&nbsp;&nbsp;
           <br>
-          <input type="text" id="name" name="name" placeholder="Name" value="<?= $name ?>"  readonly class="readonly-text" style="color: black; opacity: 1;"/>
+          <input type="text" id="name" name="name" placeholder="Name" value="<?= $name ?>"  readonly class="readonly-text" />
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Age:</label>&nbsp;&nbsp;
+          <label style="color:white; font-family:Poppins;">Age:</label>&nbsp;&nbsp;
           <br>
-          <input type="text" id="age" name="age" placeholder="Age" value="<?= $age ?>" readonly class="readonly-text" style="color: black; opacity: 1;"/>
+          <input type="text" id="age" name="age" placeholder="Age" value="<?= $age ?>" readonly class="readonly-text"/>
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Email:</label>&nbsp;&nbsp;
+          <label style="color:white; font-family:Poppins;">Email:</label>&nbsp;&nbsp;
           <br>
           <input style="font-family:Poppins;" type="text" id="email" name="email" placeholder="Email" value="<?= $email ?>" />
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Contact:</label>&nbsp;&nbsp;
+          <label style="color:white; font-family:Poppins;">Contact:</label>&nbsp;&nbsp;
           <br>
           <input style="font-family:Poppins;" type="text" id="contact" name="contact" placeholder="Contact No." value="<?= $contactno ?>" />
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Address:</label>&nbsp;&nbsp;
+          <label style="color:white;">Address:</label>&nbsp;&nbsp;
           <br>
-          <input type="text" id="address" name="address" placeholder="Address"  value="<?= $address ?>" readonly class="readonly-text" style="color: black;"/>
+          <input type="text" id="address" name="address" placeholder="Address"  value="<?= $address ?>" readonly class="readonly-text"/>
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Password:</label>&nbsp;&nbsp;
+          <label style="color:white;">Password:</label>&nbsp;&nbsp;
           <br>
-          <input type="password" id="pass" name="pass" placeholder="" value="<?= $password ?>" readonly class="readonly-text" style="color: black;">
+          <input type="password" id="pass" name="pass" placeholder="" value="<?= $password ?>" readonly class="readonly-text"/>
           <br>
-          <label style="color:white;" readonly class="readonly-text" >Room Id:</label>&nbsp;&nbsp;
+          <label style="color:white;">Room Id:</label>&nbsp;&nbsp;
           <br>
-          <input type="text" id="room" name="room" placeholder="Room Id"  value="<?= $room_ID ?>" readonly class="readonly-text" style="color: black;"/>
+          <input type="text" id="room" name="room" placeholder="Room Id"  value="<?= $room_ID ?>" readonly class="readonly-text"/>
           <br>   
 	<br>
-            <div class="button-container">
-            <button type="submit" id="displayButton" name="display" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Display</button>
-            <button type="submit" id="updateButton" name="update" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Update</button>
-            </div>
+        <button type="submit" id="displayButton" name="display" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Display</button>
+        <button type="submit" id="updateButton" name="update" class="btn btn-primary" style="font-family: 'Poppins', sans-serif;">Update</button>
           
         </form>   
                 </div>
             </section>
-            
+
             <section style="display: none; background: linear-gradient(to bottom, #002e84, #5e8bda);" class="gallery-section section parallax-window" data-parallax="scroll" id="section-3">
                 <div class="container">
                 <div class="title">
@@ -409,7 +408,6 @@ https://www.tooplate.com/view/2123-simply-amazed
 						document.getElementById("names").value = name;
 					}
 		    </script>
-          <br>
           <div class="form-group">
                 <label style="color:white;" readonly class="readonly-text">Name:</label>
                 <br>
@@ -419,7 +417,7 @@ https://www.tooplate.com/view/2123-simply-amazed
                 <br>
                 <input type="text" id="n" name="n" placeholder="name"  value="<?= $n  ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="water" name="water" placeholder="Water Bill" value="<?= $water ?>" readonly class="readonly-text" />
+                <input type="text" id="water" name="water" placeholder="Email" value="<?= $water ?>" readonly class="readonly-text" />
           </div>
           <div class="form-group">
                 <label style="color:white;" readonly class="readonly-text">Contact No.:</label>&nbsp;&nbsp;
@@ -454,12 +452,7 @@ https://www.tooplate.com/view/2123-simply-amazed
           </div>
         <br>
           <div class="form-group d-flex align-items-center justify-content-center">
-                <button type="submit" id="display" onclick="display()" name="show" class="btn btn-primary" style="font-family: 'Poppins'">Display</button>
-                    <script>
-                            function display() {
-                                showSection('section-3')
-                            }
-                    </script>
+                <button type="submit" id="display" name="show" class="btn btn-primary" style="font-family: 'Poppins'">Display</button>
           </div>
    
           
@@ -468,73 +461,72 @@ https://www.tooplate.com/view/2123-simply-amazed
                 </div>
             </section>
 
-            <section style="display: none; background: linear-gradient(to bottom, #002e84, #5e8bda);" class="contact-section section" data-parallax="scroll" id="section-4">
+            <section style="display: none; background: linear-gradient(to top, #002e84, #5e8bda);" class="contact-section section" data-parallax="scroll" id="section-4">
+
+            <br><label id="error-label" class="error-label"><?php echo $error_message; ?></label><br>
+        <label id="success-label" class="success-label"><?php echo $success_message; ?></label><br>
+
+
                 <div class="container">
+
+               
                     <div class="title">
-                        <h1 style="font-weight: bold; color:white;">Pay Now</h1>
+                        <h1 style="font-weight: bold; color:white; font-family: 'Poppins', sans-serif;" >Pay Now</h1>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-5 col-md-6 mb-4 contact-form">
                             <div class="form tm-contact-item-inner">
                                 
-                            <form id="paymentForm" enctype="multipart/form-data">
+                            <form ID="paymentForm" method="POST" enctype="multipart/form-data">
+                            
                                 <!-- ... other form fields ... -->
                                 <input type="text" id="pay_names" name="pay_names" placeholder="name"  readonly class="readonly-text" style="display: none;"/>
                                 <br>
                                 <script>
-					// Retrieve the name from localStorage
-					var name = localStorage.getItem("user");
-			
-					// Display the name on page2.html
-					if (name) {
-						document.getElementById("pay_names").value = name;
-					}
-		    </script>
+                                        // Retrieve the name from localStorage
+                                        var name = localStorage.getItem("user");
+                                
+                                        // Display the name on page2.html
+                                        if (name) {
+                                            document.getElementById("pay_names").value = name;
+                                        }
+                                </script>
                                     <br>
-                                    <label style="color:white;">Your Name:</label>&nbsp;&nbsp;
+                                    <label style="color:white;" readonly class="readonly-text">Your Name:</label>&nbsp;&nbsp;
                                     <br>
-                                    <input type="text" id="pay_name" name="pay_name" placeholder="Name" value="<?= $email ?>" />
+                                    <input type="text" id="name" name="name" placeholder="Name" />
+                                    <input type="text" id="dateTimeTextbox" name="dateTimeTextbox" readonly style="display: none;">
+                                    <script>
+                                        function updateDateTime() {
+                                        // Get the current date and time
+                                        var currentDate = new Date();
+
+                                        // Format the date and time
+                                        var formattedDateTime = currentDate.toLocaleString();
+
+                                        // Update the value of the textbox
+                                        document.getElementById('dateTimeTextbox').value = formattedDateTime;
+                                        }
+
+                                        // Call the function initially and set an interval to update every second
+                                        updateDateTime();
+                                        setInterval(updateDateTime, 1000);
+                                    </script>
                                     <br>
-                                    <br>
-                                    <label style="color:white;">Upload your receipt here</label>
+                                    <label style="color:white;" readonly class="readonly-text">Upload your receipt here</label>
                                     <input style="color:white;" id="userImage" name="userImage" type="file" class="form-control">
                                     <br>
-                                <button type="button" onclick="uploadPayment()">Upload Now</button>
+                                <button type="submit" id="new" onclick="uploadPayment()" style="font-family: 'Poppins', sans-serif;">Upload Now</button>
+
+                                <br><br>
+                                            <!-- Display the success or error message -->
+                                        <?php if (!empty($message)): ?>
+                                <p style="color:yellowgreen;"><?php echo $message; ?></p>
+                            <?php endif; ?>
                             </form> 
                                     
-                            <script>
-                                    function uploadPayment() {
-                                    var formData = new FormData(document.getElementById("paymentForm"));
-
-                                    // Add additional data to formData
-                                    var name = document.getElementById("pay_name").value;
-                                    formData.append("name", name);
-
-                                    // Add current time (UNIX timestamp) as a Date object to formData
-                                    var currentTime = new Date();
-                                    formData.append("timestamp", currentTime.toISOString()); // Convert Date to ISO format
-
-                                    // Perform AJAX upload or submit the form to handle the file on the server
-                                    fetch('index.php', {
-                                        method: 'POST',
-                                        body: formData
-                                    })
-                                    .then(response => response.json())
-                                    .then(data => {
-                                        // Handle the response from the server
-                                        console.log(data);
-
-                                        if (data.success) {
-                                            // If upload is successful, clear the text and file input fields
-                                            document.getElementById("pay_name").value = '';
-                                            document.getElementById("userImage").value = '';
-                                        }
-                                    })
-                                    .catch(error => {
-                                    
-                                    });
-                                    }
-                            </script>
+                            
                                 
                             </div>
                         </div>

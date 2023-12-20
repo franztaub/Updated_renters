@@ -29,10 +29,6 @@ if ($user) {
   <!DOCTYPE html>
   <html lang="en">
   <head>
-  html {
-    background: linear-gradient(to bottom, #002e84, #5e8bda);
-    height: 100%;
-  }
     <meta charset="UTF-8">
     <title>Blue Background Page</title>
     <style>
