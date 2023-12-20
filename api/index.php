@@ -417,7 +417,7 @@ https://www.tooplate.com/view/2123-simply-amazed
                 <br>
                 <input type="text" id="n" name="n" placeholder="name"  value="<?= $n  ?>" readonly class="readonly-text"/>
                 <br>
-                <input type="text" id="water" name="water" placeholder="Email" value="<?= $water ?>" readonly class="readonly-text" />
+                <input type="text" id="water" name="water" placeholder="Water Bill" value="<?= $water ?>" readonly class="readonly-text" />
           </div>
           <div class="form-group">
                 <label style="color:white;" readonly class="readonly-text">Contact No.:</label>&nbsp;&nbsp;
