@@ -133,51 +133,6 @@ try {
     $room_ID = "";
 }
 
-// Handle file upload
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-   // Initialize variables
-$message = "";
-    $tmpName = $_FILES['userImage']['tmp_name'];
-    $fileName = $_FILES['userImage']['name'];
-
-    // Check if the file exists before attempting to read its contents
-    if (file_exists($tmpName)) {
-        // Convert the image file to binary
-        $binaryData = file_get_contents($tmpName);
-        // Continue with the rest of your code...
-    } else {
-        // Handle the case where the file does not exist
-
-    }
-
-    // Extract other form data
-    $username = $_POST['pay_names'];
-    $name = $_POST['name'];
-    $timestamp = $_POST['dateTimeTextbox'];
-
-    // Prepare document for MongoDB insertion
-    $document = [
-        'username' => $username,
-        'name' => $name,
-        'timestamp' => $timestamp,
-        'image' => new MongoDB\BSON\Binary($binaryData, MongoDB\BSON\Binary::TYPE_GENERIC)  // Store the binary data in MongoDB
-    ];
-
-    // Insert document into MongoDB collection
-    $result = $collectionB->insertOne($document);
-
-    
-
-    // Return a response to the frontend
-    if ($result->getInsertedCount() > 0) {
-        $message = "Registration successful!";
-    } else {
-        $message = "Registration failed. Please try again.";
-    }
-} else {
-    
-}
-
 ?>
 
 <!doctype html>
@@ -520,6 +475,48 @@ https://www.tooplate.com/view/2123-simply-amazed
                                 <button type="submit" id="new" onclick="uploadPayment()" style="font-family: 'Poppins', sans-serif;">Upload Now</button>
 
                                 <br><br>
+                                <?php
+                                    // Initialize variables
+                                    $message = "";
+
+                                    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+                                        $tmpName = $_FILES['userImage']['tmp_name'];
+                                        $fileName = $_FILES['userImage']['name'];
+
+                                        // Check if the file exists before attempting to read its contents
+                                        if (file_exists($tmpName)) {
+                                            // Convert the image file to binary
+                                            $binaryData = file_get_contents($tmpName);
+                                            // Continue with the rest of your code...
+
+                                            // Extract other form data
+                                            $username = $_POST['pay_names'];
+                                            $name = $_POST['name'];
+                                            $timestamp = $_POST['dateTimeTextbox'];
+
+                                            // Prepare document for MongoDB insertion
+                                            $document = [
+                                                'username' => $username,
+                                                'name' => $name,
+                                                'timestamp' => $timestamp,
+                                                'image' => new MongoDB\BSON\Binary($binaryData, MongoDB\BSON\Binary::TYPE_GENERIC)  // Store the binary data in MongoDB
+                                            ];
+
+                                            // Insert document into MongoDB collection
+                                            $result = $collectionB->insertOne($document);
+
+                                            // Return a response to the frontend
+                                            if ($result->getInsertedCount() > 0) {
+                                                $message = "Registration successful!";
+                                            } else {
+                                                $message = "Registration failed. Please try again.";
+                                            }
+                                        } else {
+
+                                        }
+                                    }
+                                    ?>
+
                                         <!-- Display the success or error message -->
                                         <?php if (isset($message) && !empty($message)): ?>
                                             <p style="color:yellowgreen;"><?php echo $message; ?></p>
