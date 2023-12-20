@@ -147,7 +147,7 @@ $message = "";
         // Continue with the rest of your code...
     } else {
         // Handle the case where the file does not exist
-        echo "File does not exist.";
+
     }
 
     // Extract other form data
